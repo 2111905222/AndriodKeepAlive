@@ -12,8 +12,11 @@ public class Application extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Configure.cachePath = this.getCacheDir().getAbsolutePath() + File.separator;
+        System.out.println("初始化外部cacheDirPath" + getExternalCacheDir());
+        System.out.println("初始化cachePath：" + Configure.cachePath);  // /data/user/0/com.example.screendemo/cache/
         Configure.externalPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
-        Configure.localRootPath = Configure.externalPath + "OnBright/";
+        Configure.localRootPath = Configure.cachePath + "OnBright/";
         Configure.logPath = Configure.externalPath + "OnBright/logFile/";
         FileUtils.createDir(Configure.localRootPath);
         FileUtils.createDir(Configure.logPath);

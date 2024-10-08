@@ -1,5 +1,6 @@
 package com.example.zhantingtvserver.Config;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 
@@ -9,7 +10,9 @@ public class Configure {
     public static boolean debug = false;
     public static String  localRootPath = "";
     public static String  externalPath;
+    public static String  cachePath;
     public static String  controlFun = "控制电视屏幕";
+    @SuppressLint("StaticFieldLeak")
     public static Context context = null;
     /**
      * 运行日志存储路径
