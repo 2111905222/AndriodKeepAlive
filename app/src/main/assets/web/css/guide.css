@@ -1,0 +1,184 @@
+/* 导航 */
+.content .form .form_head_guide {
+    height: 99px;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #aca9a9;
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.form_head_guide .guide_head1 {
+    height: 50px;
+    display: block;
+}
+
+.form_head_guide .guide_head2 {
+    height: 40px;
+    display: block;
+}
+
+.form_head1_guide {
+    /* 浮动 */
+    float: left;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 50px;
+    z-index: 1;
+}
+
+.form_head2_guide {
+    float: left;
+    font-size: 12px;
+    color: #aca9a9;
+    line-height: 50px;
+    margin-left: 10px;
+    z-index: 1;
+}
+
+.form_head3_guide {
+    float: right;
+    margin-right: 20px;
+    z-index: 1;
+}
+
+.input_text_guide {
+    float: left;
+    width: 600px;
+    height: 34px;
+}
+
+.submit_guide_name{
+    float: left;
+    margin-left: 10px;
+    margin-top: 2px;
+    height: 34px;
+    width: 6rem;
+    color: #fff;
+    border-radius: .25rem;
+    border: none;
+    padding: .25rem 1rem;
+    background-color: #2a80eb;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.input_text_bobao {
+    display: block;
+    width: 400px;
+    height: 120px;
+    margin: 0 0 10px 50px;
+}
+
+select {
+    display: block;
+    width: 404px;
+    height: 34px;
+    margin: 0 0 10px 50px;
+}
+
+.form_content_guide {
+    height: 650px;
+    display: block;
+    position: relative;
+    margin: 0 20px 0px 20px;
+    overflow: auto;
+}
+
+.content .item .form .form_content_guide .img3 {
+    display: inline;
+    position: absolute;
+    top: 30%;
+    left: 43%;
+}
+
+.data_table_guide {
+    border-collapse: collapse;
+    width: 100%;
+    display: none;
+    margin-top: 20px;
+}
+
+.confirm_guide {
+    height: 60px;
+    display: block;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+.confirmBtn_guide {
+    float: right;
+    margin: 10px;
+    padding: 7px 20px;
+    border: none;
+    /* 圆角 */
+    border-radius: 5px;
+    background-color: #3a6ef4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    /* 设定鼠标的形状为一只伸出食指的手 */
+    cursor: pointer;
+}
+
+
+/* 页码部分 */
+.pagination_guide {
+    display: none;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination_guide a {
+    display: inline-block;
+    padding: 8px;
+    margin: 0 4px;
+    background-color: #eee;
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination_guide a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination_guide input[type="number"] {
+    padding: 8px;
+    margin: 0 4px;
+    width: 64px;
+    height: 16px;
+}
+
+.pagination_guide input[type="submit"] {
+    padding: 8px;
+    margin: 0 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* 闪烁两次 */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink {
+    background-color: red;
+    animation: blink 0.25s linear;
+    animation-iteration-count: 2;
+}

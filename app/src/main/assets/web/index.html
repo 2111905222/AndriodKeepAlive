@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昂宝机器人后台管理系统</title>
+    <link rel="stylesheet" href="css/backend.css" />
+    <!-- <script type="text/javascript" src="js/face.js"></script>
+    <script type="text/javascript" src="js/ad.js"></script>
+    <script type="text/javascript" src="js/guide.js"></script>
+    <script type="text/javascript" src="js/lead.js"></script>
+    <script type="text/javascript" src="js/qa.js"></script>
+    <script type="text/javascript" src="js/upgrade.js"></script> -->
+    <script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-iso.css" />
+</head>
+
+<body>
+
+    <div class="context">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src="img/logo.png" alt="logo" class="image-container">
+                <p class="text-container">昂小宝 On-Bright</p>
+            </div>
+
+            <div class="system">
+                <a href="#index"><p class="bootstrap-iso"><span class="glyphicon glyphicon-th-large"></span> 系统管理</p></a>
+                <ul>
+                    <li id="face-li">
+                        <a href="face.html">
+                            <div class="face">人脸库管理</div>
+                        </a>
+                    </li>
+                    <li id="ad-li">
+                        <a href="adv.html">
+                            <div class="advertisement">广告库管理</div>
+                        </a>
+                    </li>
+                    <li id="guide-li">
+                        <a href="guide.html">
+                            <div class="guide">导览点管理</div>
+                        </a>
+                    </li>
+                    <!-- <li id="lead-li">
+                        <a href="lead.html">
+                            <div class="lead">引领点管理</div>
+                        </a>
+                    </li> -->
+                    <li id="qa-li">
+                        <a href="qa.html">
+                            <div class="qa">QA问题库管理</div>
+                        </a>
+                    </li>
+                    <li id="upgrade-li">
+                        <a href="upgrade.html">
+                            <div class="upgrade">APP版本管理</div>
+                        </a>
+                    </li>
+                    <li id="password-li">
+                        <a href="password.html">
+                            <div class="password">修改密码</div>
+                        </a>
+                    </li>
+                    <li id="firstpage-li">
+                        <a href="firstpage.html">
+                            <div class="firstpage">APP首页管理</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 右侧主体 -->
+    <div class="main">
+        <!-- 右侧头部 -->
+        <div class="head">
+
+        </div>
+        <!-- 右侧表格区 -->
+        <div class="first-page" id="content">
+            <img src="./img/logo2.png" alt="欢迎使用" id="img0" class="first-img">
+        </div>
+
+
+        <!-- *************************************************script********************************************************** -->
+        <script>
+            // ***********刷新界面后使当前active的li调用函数*****************
+            $(function () {
+                var activeLi = $('.system ul li.active');
+                if (activeLi.length > 0) {
+                    var functionName = activeLi.data('function');
+                    if (typeof window[functionName] === 'function') {
+                        window[functionName]();
+                    }
+                }
+            });
+            //******************************点击侧边栏列表更换不同的内容******************************************
+            $(function () {
+                // 给菜单选项绑定点击事件
+                $('.system ul li').on('click', function () {
+                    var parent = document.getElementById("content");
+                    const cover = parent.querySelector('.cover');
+
+                    //添加数据弹窗弹出时不能点击其他的li
+                    if (!cover) {
+                        // var functionName = $(this).data('function');
+                        // if (typeof window[functionName] === 'function') {
+                        //     window[functionName]();
+                        // }
+
+                        // 移除所有选项的 active 类名，添加当前选项的 active 类名
+                        $('.system ul li').removeClass('active');
+                        $(this).addClass('active');
+
+                        // // 隐藏所有内容，显示对应索引的内容
+                        // var index = $(this).index();
+                        // $('.content .item').removeClass('show');
+                        // $('.content .item').eq(index).addClass('show');
+                    }
+
+                });
+            });
+
+        </script>
+</body>
+
+</html>

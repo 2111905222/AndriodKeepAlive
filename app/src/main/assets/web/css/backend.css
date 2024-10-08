@@ -1,0 +1,994 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "微软雅黑";
+}
+
+body {
+    background-color: #f3efef;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+ul li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.context {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    /* flex 基础值为 0，不可伸缩，宽度由内容撑开，高度设置为 100vh，即占满整个屏幕高度 */
+    flex: 0 0 auto;
+    height: 100vh;
+    width: 256px;
+    background: #303C55;
+    display: block;
+    /* position: relative; */
+    overflow: hidden;
+    position: fixed;
+    /* 将侧边栏固定在浏览器窗口 */
+    top: 0;
+    /* 将侧边栏定位在页面顶部 */
+    left: 0;
+    /* 将侧边栏定位在页面左侧 */
+    bottom: 0;
+    z-index: 99999;
+}
+
+.logo {
+    height: 36px;
+    width: 256px;
+    display: block;
+    margin-top: 18px;
+    /* margin-left: 31px; */
+    /* display: flex;
+    align-items: center; */
+}
+
+/* .image-container {
+    flex: 0 0 auto;
+    margin-right: 10px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-container {
+    flex: 1 1 auto;
+    vertical-align: middle;
+} */
+
+/* .text-container p {
+    margin: 0;
+    line-height: 1.4;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+} */
+
+.image-container {
+    /* max-width: 100%;
+    height: auto; */
+    width: 36px;
+    height: 36px;
+    float: left;
+    margin-left: 32px;
+}
+
+.text-container {
+    float: left;
+    margin-left: 10px;
+    line-height: 36px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.system {
+    margin-top: 20px;
+}
+
+.system p {
+    color: #ffffff;
+    padding-left: 30px;
+    line-height: 50px;
+}
+
+/* .system ul li {
+    text-align: center;
+    line-height: 50px;        
+    background-color: #1C243B;
+} */
+
+.system ul li a div {
+    text-align: center;
+    line-height: 50px;
+    background-color: #1C243B;
+    color: #f3efef;
+    font-size: 16px;
+}
+
+/* .system ul li a{
+    color: #f3efef;
+    font-size: 16px;
+} */
+
+.system ul li a:hover div {
+    color: #3a6ef4;
+    background-color: #ebe7e7;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.system ul li.active a div {
+    color: #3a6ef4;
+    background-color: #aca9a9;
+    font-weight: 700;
+}
+
+
+.main {
+    /* 表示它的 flex 基础值为 1，可伸缩，占据剩余的空间 */
+    flex: 1 1 auto;
+    overflow: hidden;
+}
+
+.head {
+    height: 49px;
+    width: 100%;
+    background: #ffffff;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #eeeaea;
+}
+
+.first-page {
+    width: 1558px;
+    height: 800px;
+    position: absolute;
+    margin: 60px 20px 20px 276px;
+    background: #ffffff;
+}
+
+.first-img {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content {
+    /* height: 786px;
+    width: 634px; */
+    display: block;
+    position: absolute;
+    left: 256px;
+    top: 50px;
+    bottom: 0px;
+    right: 0px;
+    /* overflow: hidden; */
+}
+
+
+/* 隐藏所有内容 */
+.content .item {
+    /* display 属性不支持过渡效果，因此您可以将元素的 visibility 属性设置为可过渡的属性，并在过渡效果开始时将其从 hidden 更改为 visible。 */
+    /* display: none; */
+    visibility: hidden;
+    /* position: relative; */
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    opacity: 0;
+    /* transition: opacity 5s ease-in-out; */
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.content .item.show {
+    /* display: block; */
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+.cover {
+    content: "";
+    display: none;
+    /* 初始状态下不显示遮挡 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 遮挡层和float层都要设置,遮挡层的值要比float层高 */
+    z-index: 2;
+}
+
+.content .item .item_p {
+    font-size: 12px;
+    color: #aca9a9;
+    margin-top: 34px;
+    margin-left: 20px;
+    line-height: 26px;
+    display: block;
+}
+
+
+.content .item .form {
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+    margin: 10px 20px 10px 20px;
+    overflow: hidden;
+}
+
+/* .content .item .form {
+    background-color: #ffffff;
+    display: block;
+    position: fixed;
+    top: 120px;
+    left: 276px;
+    right: 20px;
+    bottom: 20px;
+    overflow: hidden;
+} */
+
+
+/* .form {
+    width: 100%;
+    height: 750px;
+    background-color: #ffffff;
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    overflow: hidden;
+} */
+
+/* 主体内容部分 */
+.content .form .form_head {
+    height: 59px;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #aca9a9;
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+.form_head1 {
+    /* 浮动 */
+    float: left;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 60px;
+    z-index: 1;
+}
+
+.form_head2 {
+    float: left;
+    font-size: 12px;
+    color: #aca9a9;
+    line-height: 60px;
+    margin-left: 10px;
+    z-index: 1;
+}
+
+.form_head3 {
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+button {
+    padding: 7px 20px;
+    border: none;
+    /* 圆角 */
+    border-radius: 5px;
+    background-color: #3a6ef4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    /* 设定鼠标的形状为一只伸出食指的手 */
+    cursor: pointer;
+}
+
+.content .form .form_content {
+    height: 730px;
+    display: block;
+    position: relative;
+    margin: 0 20px 0px 20px;
+    overflow: auto;
+    /* position: absolute;
+    top: 60px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px; */
+}
+
+.content .item .form .form_content .img1 {
+    display: inline;
+    position: absolute;
+    top: 30%;
+    left: 42%;
+}
+
+.content .item .form .form_content .img2 {
+    display: inline;
+    position: absolute;
+    top: 30%;
+    left: 43%;
+}
+
+
+/* 样式化表格 */
+.data_table {
+    border-collapse: collapse;
+    width: 100%;
+    display: none;
+    margin-top: 20px;
+}
+
+/* #data-table-ad {
+    border-collapse: collapse;
+    width: 100%;
+    display: none;
+    margin-top: 20px;
+} */
+
+
+td {
+    padding: 8px 50px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+    color: #414040;
+}
+
+th {
+    background-color: #e5e5e5;
+    color: #000;
+    padding: 8px 50px;
+    text-align: left;
+}
+
+tr {
+    transition: transform 0.005s linear;
+}
+
+.mbc {
+    background-color: #f1f1f1;
+}
+
+.move-up {
+    transform: translateY(38.5px);
+}
+
+.move-down {
+    transform: translateY(-38.5px);
+}
+
+td a {
+    color: #3a6ef4;
+    float: left;
+    margin-right: 30px;
+}
+
+td a:hover {
+    color: #051e68;
+}
+
+.confirm_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #999;
+    padding: 10px 20px;
+    z-index: 100;
+    display: none;
+}
+
+.confirm_box .confirm_p {
+    font-size: 16px;
+    margin: 10px;
+    color: #000;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+.confirm_box .confirm_pwd {
+    font-size: 12px;
+    margin: 10px;
+    color: red;
+    line-height: 20px;
+    font-weight: 700;
+    display: none;
+}
+
+.confirmBtn {
+    float: left;
+    margin: 10px;
+}
+
+.cancelBtn {
+    float: right;
+    margin: 10px;
+}
+
+.confirmBtn_input {
+    float: left;
+    margin: 10px;
+    padding: 7px 20px;
+    border: none;
+    /* 圆角 */
+    border-radius: 5px;
+    background-color: #3a6ef4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    /* 设定鼠标的形状为一只伸出食指的手 */
+    cursor: pointer;
+}
+
+.cancelBtn_input {
+    float: right;
+    margin: 10px;
+    padding: 7px 20px;
+    border: none;
+    /* 圆角 */
+    border-radius: 5px;
+    background-color: #3a6ef4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    /* 设定鼠标的形状为一只伸出食指的手 */
+    cursor: pointer;
+}
+
+/* 页码部分 */
+.pagination {
+    display: none;
+    justify-content: right;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px;
+    margin: 0 4px;
+    background-color: #eee;
+    color: #333;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.pagination input[type="number"] {
+    padding: 8px;
+    margin: 0 4px;
+    width: 64px;
+    height: 16px;
+}
+
+.pagination input[type="submit"] {
+    padding: 8px;
+    margin: 0 4px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.disabled {
+    visibility: hidden;
+}
+
+/* 以上 */
+
+
+
+/* 隐藏侧边栏 */
+.pullsidebar {
+    display: none;
+    /* visibility: hidden; */
+    position: fixed;
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    left: 1300px;
+    background-color: #fff;
+    z-index: 99999;
+    border-left: 2px solid #6e6d6d;
+    /* opacity: 0;
+    transition: visibility 0s, opacity 0.3s; */
+    /* background: rgba(0, 0, 0, 0.5); */
+}
+
+/* .pullsidebar.in {
+    visibility: visible;
+    opacity: 1;
+} */
+
+.pullsidebar-head {
+    height: 60px;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #aca9a9;
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow: hidden;
+}
+
+h4 {
+    margin: 10px 0 10px 50px;
+    font-weight: 400;
+}
+
+h6 {
+    margin: 10px 0 10px 50px;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.input_text {
+    display: block;
+    width: 400px;
+    height: 30px;
+    margin: 0 0 10px 50px;
+}
+
+.input_pwd {
+    display: block;
+    width: 300px;
+    height: 30px;
+    margin: 0 0 10px 10px;
+}
+
+.show_img {
+    width: 160px;
+    height: 160px;
+    margin: 0 0 10px 50px;
+    border: 1px dashed #aca9a9;
+    display: block;
+    text-align: center;
+    color: #aca9a9;
+    font-size: 16px;
+    line-height: 160px;
+    position: relative;
+}
+
+/* #imgPreview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 9999;
+} */
+
+.show_ad {
+    width: 320px;
+    height: 240px;
+    margin: 0 0 10px 50px;
+    border: 1px dashed #aca9a9;
+    display: block;
+    text-align: center;
+    color: #aca9a9;
+    font-size: 20px;
+    line-height: 240px;
+}
+
+.fileUpload {
+    display: block;
+    margin: 10px 0 10px 50px;
+}
+
+[type=file] {
+    color: #000;
+    /* font-size: 0; */
+}
+
+/* 主按钮的样式自定义 */
+::file-selector-button {
+    height: 2rem;
+    color: #2a80eb;
+    border-radius: .25rem;
+    border: 1px solid #2a80eb;
+    padding: .25rem 1rem;
+    background-color: #f7f5f5;
+    cursor: pointer;
+}
+
+h5 {
+    margin: 0px 50px 10px 50px;
+    color: #aca9a9;
+}
+
+.pullsidebar-bottom {
+    height: 60px;
+    display: block;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    position: absolute;
+    border-top: 1px solid #aca9a9;
+    /* margin: 250px 20px 0 20px; */
+    overflow: hidden;
+}
+
+.save-button {
+    float: right;
+    margin-top: 15px;
+    margin-right: 20px;
+    height: 2rem;
+    width: 6rem;
+    color: #fff;
+    /* border-radius: .25rem; */
+    border: none;
+    padding: .25rem 2rem;
+    background-color: #2a80eb;
+    cursor: pointer;
+}
+
+.cancel-button {
+    float: right;
+    margin-top: 15px;
+    margin-right: 20px;
+    height: 2rem;
+    width: 6rem;
+    color: #000;
+    /* border-radius: .25rem; */
+    border: 1px solid #000;
+    padding: .25rem 2rem;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* 引领 */
+.select_lead {
+    display: block;
+    width: 200px;
+    height: 34px;
+    margin: 20px 60px;
+
+}
+
+.input_text_lead {
+    display: block;
+    width: 300px;
+    height: 60px;
+    margin: 10px 20px;
+}
+
+.confirm_box_lead {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #999;
+    padding: 10px 20px;
+    z-index: 100;
+    display: none;
+}
+
+.confirm_box_lead .confirm_p {
+    font-size: 16px;
+    margin: 10px;
+    color: #000;
+    line-height: 30px;
+    font-weight: 700;
+}
+
+.confirmBtn_lead {
+    float: left;
+    margin: 10px 20px;
+    padding: 7px 20px;
+    border: none;
+    /* 圆角 */
+    border-radius: 5px;
+    background-color: #3a6ef4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    /* 设定鼠标的形状为一只伸出食指的手 */
+    cursor: pointer;
+}
+
+.cancelBtn_lead {
+    float: right;
+    margin: 10px 20px;
+}
+
+
+/* 问答 */
+.input_text_bobao {
+    display: block;
+    width: 400px;
+    height: 120px;
+    margin: 0 0 10px 50px;
+}
+
+.input_text_bobao_im {
+    display: block;
+    width: 400px;
+    height: 80px;
+    margin: 0 0 10px 50px;
+}
+
+.answer_way {
+    height: 60px;
+    margin: 10px 50px;
+}
+
+.answer_button {
+    float: left;
+    margin: 10px 10px;
+}
+
+.answer {
+    margin: 10px 0px;
+}
+
+.download_box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #999;
+    /* padding: 10px 20px; */
+    z-index: 100;
+    display: none;
+    width: 400px;
+    height: 100px;
+}
+
+.myProgress {
+    width: 300px;
+    height: 40px;
+    margin: 15px 50px;
+    display: block;
+}
+
+.progress {
+    width: 300px;
+    height: 40px;
+}
+
+/* 将百分数嵌入进度条的内部 */
+.progress_percentage {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+}
+
+.myStatus {
+    width: 300px;
+    height: 40px;
+    margin: 15px 50px;
+    display: none;
+    font-size: 16px;
+    line-height: 40px;
+}
+
+.download_head {
+    background-color: #2a80eb;
+    width: 400px;
+    height: 30px;
+    display: block;
+}
+
+.download_head .download_head_p {
+    color: #fff;
+    line-height: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 5px;
+}
+
+#close span {
+    color: #e0e0e0;
+    font-size: 18px;
+    float: right;
+    margin: 5px;
+}
+
+#close span:hover {
+    color: #fff;
+}
+
+#close-no span {
+    color: #e0e0e0;
+    font-size: 18px;
+    float: right;
+    margin: 5px;
+    font-weight: lighter;
+}
+
+#close-no span:hover {
+    color: #fff;
+}
+
+.first_button {
+    padding: 7px 40px;
+    border: none;
+    /* 圆角 */
+    border-radius: 5px;
+    background-color: #3a6ef4;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    /* 设定鼠标的形状为一只伸出食指的手 */
+    cursor: pointer;
+    margin: 30px 130px;
+    /* display: block; */
+}
+
+.show_bg {
+    width: 640px;
+    height: 480px;
+    margin: 10px 0 0px 50px;
+    border: 1px dashed #aca9a9;
+    display: block;
+    text-align: center;
+    color: #aca9a9;
+    font-size: 16px;
+    line-height: 160px;
+    position: relative;
+}
+
+.confirm_backto {
+    height: 60px;
+    display: block;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+
+select {
+    display: block;
+    width: 404px;
+    height: 40px;
+    margin: 0 0 10px 50px;
+}
+
+.ifshow {
+    margin: 10px 0 10px 8px;
+    width: 16px;
+    height: 16px;
+}
+
+/* CSS代码 */
+/* 隐藏原生的下拉列表 */
+.custom-select ul {
+    display: none;
+}
+
+/* 自定义下拉列表的样式 */
+.custom-select {
+    position: relative;
+    display: block;
+    width: 404px;
+    height: 40px;
+    margin-left: 50px;
+}
+
+/* 自定义下拉列表的箭头图标 */
+.custom-select::after {
+    content: "\e114";
+    font-family: "Glyphicons Halflings";
+    font-weight: lighter;
+    font-size: 12px;
+    color: black;
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* 自定义下拉列表的选项样式 */
+.custom-select ul li {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: 0px;
+    cursor: pointer;
+    width: 380px;
+    /* 原func为20px,func1为40px */
+    height: 40px;
+    margin: 0;
+}
+
+/* 自定义下拉列表的选项样式，选中时的样式 */
+.custom-select ul li.selected {
+    background-color: #ccc;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    object-fit: fill;
+}
+
+.icon-im {
+    width: 64px;
+    height: 36px;
+    object-fit: fill;
+    margin-right: 5px;
+}
+
+.image-main {
+    position: relative;
+    /* display: inline; */
+    width: 1100px;
+    height: 750px;
+
+}
+
+/* 设置图片的位置和大小 */
+.image-main .main-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.image-fuc {
+    position: relative;
+    display: inline-block;
+    width: 280px;
+    height: 158px;
+    border: 1px dashed #aca9a9;
+}
+
+/* 设置叠加图片的位置和大小 */
+/* transform: translate(-50%, -50%);用于将元素沿着X轴和Y轴移动。其中，-50%表示元素的中心点相对于父元素的中心点向左和向上移动了50%的距离。
+这个属性通常用于实现元素的居中对齐,以确保叠加图片相对于容器垂直和水平居中。 */
+.image-fuc img {
+    position: absolute;
+    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.image-fuc .button-fuc {
+    position: absolute;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 40px;
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
