@@ -54,6 +54,7 @@ public class WebController {
             if (Configure.tvState) {
                 return "success";
             }
+            //Configure.tvState = true;
 //            if (VariableCache.getBoolean(Configure.tvId, Configure.context)) {
 //                return "success";
 //            }
@@ -70,6 +71,7 @@ public class WebController {
             if (!Configure.tvState) {
                 return "success";
             }
+            //Configure.tvState = false;
 //            if (!VariableCache.getBoolean(Configure.tvId, Configure.context)) {
 //                return "success";
 //            }

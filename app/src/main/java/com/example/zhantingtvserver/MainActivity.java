@@ -1,6 +1,9 @@
 package com.example.zhantingtvserver;
 
 
+import static com.example.zhantingtvserver.Utils.ScreenUtils.screenOff;
+import static com.example.zhantingtvserver.Utils.ScreenUtils.screenOnOrOffAndroid10_12;
+
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
         //doSomethingWithPermissions();
         requestPer();
+        //screenOff();
+        //screenOnOrOffAndroid10_12();
         start_OnePixelService();
         //NetWorkUtils.setDebug(5555);
         finish();
@@ -59,8 +64,10 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
 
     // 从Activity改成Service注册广播接收者，在Service中进行
     private void start_OnePixelService(){
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, OnePixelService.class);
+        Intent intent = new Intent(this, OnePixelService.class);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//            intent.setClass(MainActivity.this, OnePixelService.class);
+//        }
         startService(intent);
     }
 
@@ -90,16 +97,16 @@ public class MainActivity extends AppCompatActivity implements EasyPermissions.P
         moveTaskToBack(true);
     }
 
-    public void registerScreenState(){
-        VariableCache.putBoolean(Configure.tvId, ScreenUtils.getScreenStatus(this), Configure.context);
-        Configure.tvState = ScreenUtils.getScreenStatus(this); // 获取当前屏幕状态
-        System.out.println("当前屏幕状态为："+Configure.tvState);
-        buttonAppReceiver = new ButtonAppReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_SCREEN_ON);//打开屏幕广播
-        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);//熄屏广播
-        registerReceiver(buttonAppReceiver,intentFilter); //注册按钮事件
-    }
+//    public void registerScreenState(){
+//        VariableCache.putBoolean(Configure.tvId, ScreenUtils.getScreenStatus(this), Configure.context);
+//        Configure.tvState = ScreenUtils.getScreenStatus(this); // 获取当前屏幕状态
+//        System.out.println("当前屏幕状态为："+Configure.tvState);
+//        buttonAppReceiver = new ButtonAppReceiver();
+//        IntentFilter intentFilter = new IntentFilter();
+//        intentFilter.addAction(Intent.ACTION_SCREEN_ON);//打开屏幕广播
+//        intentFilter.addAction(Intent.ACTION_SCREEN_OFF);//熄屏广播
+//        registerReceiver(buttonAppReceiver,intentFilter); //注册按钮事件
+//    }
 
     public void requestPer(){
         String[] permissions = new String[]{

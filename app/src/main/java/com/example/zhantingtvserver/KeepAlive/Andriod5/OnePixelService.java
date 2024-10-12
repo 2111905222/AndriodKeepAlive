@@ -18,7 +18,6 @@ import com.example.zhantingtvserver.Config.Configure;
 import com.example.zhantingtvserver.TvOnline;
 import com.example.zhantingtvserver.Utils.LogUtils;
 
-@RequiresApi(api = Build.VERSION_CODES.S)
 public class OnePixelService extends Service {
     private static final String CHANNEL_ID = NotificationChannel.EDIT_IMPORTANCE;
     TvOnline tvOnline;

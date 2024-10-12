@@ -54,24 +54,25 @@ public class LogUtils {
      * */
     public static void setInfoTagLog(String tag,String msg)
     {
-        File logFile = new File(Configure.logPath,logFileName);
-        if(logFile.exists())
-        {
-           if(logFile.length() > maxFileSize)
-           {
-               logFile.delete();
-           }
-        }
-        System.out.println(tag + INFOTAG + ":\t" + msg );
-        msg = getDate() + tag + INFOTAG + ":\t" + msg + "\n";
-        try{
-            FileOutputStream backupOutputStr = new FileOutputStream(new File(Configure.logPath, logFileName), true);
-            backupOutputStr.write(msg.getBytes());
-            backupOutputStr.close();
-        }catch (IOException e)
-        {
-           e.printStackTrace();
-        }
+
+//        File logFile = new File(Configure.logPath,logFileName);
+//        if(logFile.exists())
+//        {
+//           if(logFile.length() > maxFileSize)
+//           {
+//               boolean a = logFile.delete();
+//           }
+//        }
+//        System.out.println(tag + INFOTAG + ":\t" + msg );
+//        msg = getDate() + tag + INFOTAG + ":\t" + msg + "\n";
+//        try{
+//            FileOutputStream backupOutputStr = new FileOutputStream(new File(Configure.logPath, logFileName), true);
+//            backupOutputStr.write(msg.getBytes());
+//            backupOutputStr.close();
+//        }catch (IOException e)
+//        {
+//           e.printStackTrace();
+//        }
     }
 
     /**

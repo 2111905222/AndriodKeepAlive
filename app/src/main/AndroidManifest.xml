@@ -40,13 +40,20 @@
         android:theme="@style/Theme.ZhantingTvServer"
         tools:targetApi="31"
         tools:ignore="HardcodedDebugMode">
-        <receiver
-            android:name=".BootReceiver"
+        <receiver android:name=".KeepAlive.Andriod5.OnePixelReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SCREEN_ON"/>
+                <action android:name="android.intent.action.SCREEN_OFF"/>
             </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+
         </receiver>
         <!-- 服务 -->
         <service android:name=".TvService"/>

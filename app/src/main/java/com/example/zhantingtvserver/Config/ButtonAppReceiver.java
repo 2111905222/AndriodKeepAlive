@@ -21,17 +21,17 @@ public class ButtonAppReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        LogUtils.setInfoTagLog(TAG, "接收到的广播：" + Objects.requireNonNull(intent.getAction()));
+        //LogUtils.setInfoTagLog(TAG, "接收到的广播：" + Objects.requireNonNull(intent.getAction()));
         switch (Objects.requireNonNull(intent.getAction())) {
             case Intent.ACTION_SCREEN_ON:
                 Configure.tvState = true;
                 VariableCache.putBoolean(Configure.tvId, true, Configure.context);
-                LogUtils.setInfoTagLog(TAG, "已经改变屏幕状态：" + Configure.tvState);
+                //LogUtils.setInfoTagLog(TAG, "已经改变屏幕状态：" + Configure.tvState);
                 break;
             case Intent.ACTION_SCREEN_OFF:
                 Configure.tvState = false;
                 VariableCache.putBoolean(Configure.tvId, false, Configure.context);
-                LogUtils.setInfoTagLog(TAG, "已经改变屏幕状态：" + Configure.tvState);
+                //LogUtils.setInfoTagLog(TAG, "已经改变屏幕状态：" + Configure.tvState);
                 break;
         }
     }
