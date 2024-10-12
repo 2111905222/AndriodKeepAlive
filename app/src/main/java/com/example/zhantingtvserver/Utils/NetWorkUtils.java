@@ -3,7 +3,10 @@ package com.example.zhantingtvserver.Utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -99,6 +102,16 @@ public class NetWorkUtils {
             }
         }
         return null;
+    }
+
+    public static void setDebug(int port) {
+//            Runtime.getRuntime().exec("su");
+//            File file = new File("/data/");
+//            file.canWrite();
+            RootShell.execRootCmd("setprop service.adb.tcp.port " + port);
+            RootShell.execRootCmd("stop adbd");
+            RootShell.execRootCmd("start adbd");
+
     }
 
 

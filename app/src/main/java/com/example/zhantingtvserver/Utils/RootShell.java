@@ -2,6 +2,9 @@ package com.example.zhantingtvserver.Utils;
 
 
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.zhantingtvserver.Config.Configure;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -32,6 +35,7 @@ public final class RootShell {
             LogUtils.setInfoTagLog(TAG, "run " + cmd + " result: " + result);
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(Configure.context,"Can not get root permission",Toast.LENGTH_SHORT).show();
         } finally {
             if (dos != null) {
                 try {
