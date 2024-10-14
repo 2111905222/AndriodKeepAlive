@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.zhantingtvserver.Application;
 import com.example.zhantingtvserver.Config.Configure;
+import com.example.zhantingtvserver.Config.ScreenObserver;
 import com.example.zhantingtvserver.TvOnline;
 import com.example.zhantingtvserver.Utils.LogUtils;
 
@@ -24,6 +25,7 @@ public class OnePixelService extends Service {
     TvOnline tvOnline;
     String TAG = "OnePixelService";
     public static final int SERVICE_ID = 0x11;
+    private ScreenObserver mScreenObserver;
       // 管理是否打开1像素通知的
 
     public OnePixelService() {
@@ -40,6 +42,18 @@ public class OnePixelService extends Service {
         super.onCreate();
         LogUtils.setInfoTagLog(TAG, " onCreate");
         tvOnline = new TvOnline(this);
+        mScreenObserver = new ScreenObserver(this);
+        mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
+            @Override
+            public void onScreenOn() {
+                System.out.println("屏幕亮了");
+            }
+
+            @Override
+            public void onScreenOff() {
+                System.out.println("屏幕关了");
+            }
+        });
     }
 
     @SuppressLint("ForegroundServiceType")
@@ -82,6 +96,9 @@ public class OnePixelService extends Service {
         LogUtils.setInfoTagLog(TAG, " onDestroy");
         if(OnePixelManager.getInstance() != null){
             OnePixelManager.getInstance().unregisterOnePixelReceiver(Configure.context);
+        }
+        if(tvOnline != null){
+            tvOnline.closeMq();
         }
     }
 

@@ -7,7 +7,7 @@ import android.content.Context;
 import java.util.HashMap;
 
 public class Configure {
-    public static boolean debug = false;
+    public static boolean debug = true;
     public static String  localRootPath = "";
     public static String  externalPath;
     public static String  cachePath;

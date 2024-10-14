@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OnePixelManager {
     private static final String TAG = "[OnePixelManager]";
     private static WeakReference<Activity> mActivity;
     private static OnePixelReceiver onePixelReceiver;
     public static OnePixelManager onePixelManager = new OnePixelManager();
+
 
     public static OnePixelManager getInstance() {
         if (onePixelManager == null) {
@@ -78,15 +81,19 @@ public class OnePixelManager {
         else{
             System.out.println("mActivity is null");
         }
+
+
     }
+
 
     /**
      * 使用弱引用获取一像素的上下文
      * @param activity
      */
-    public void setKeepAliveReference(OnePixelActivity activity){
+    public void setKeepAliveReference(Activity activity){
         mActivity = new WeakReference<Activity>(activity);
     }
+
 
 }
 

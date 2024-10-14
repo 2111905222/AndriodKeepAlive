@@ -7,8 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -64,7 +62,6 @@
         </activity>
         <activity android:name=".TvOnline"/>
         <service android:name=".KeepAlive.Andriod6.KeepLiveService"/>
-        <service android:name=".KeepAlive.Andriod5.ForegroundService"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
