@@ -22,7 +22,7 @@ public class Application extends android.app.Application {
         FileUtils.createDir(Configure.logPath);
         Configure.tvId = Configure.clickDevicesList.get(Configure.tvName);
         Configure.context = Application.this;
-        OnePixelManager.getInstance().registerOnePixelReceiver(this);//注册广播接收者
+        //OnePixelManager.getInstance().registerOnePixelReceiver(this);//注册广播接收者
         if(Configure.debug){
             Configure.localAddress = "10.168.1.1";
         }
@@ -31,4 +31,10 @@ public class Application extends android.app.Application {
         }
     }
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        System.out.println("注销application");
+        OnePixelManager.getInstance().unregisterOnePixelReceiver(this);//解注册广播接收者
+    }
 }

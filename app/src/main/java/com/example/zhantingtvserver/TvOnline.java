@@ -125,15 +125,7 @@ public class TvOnline {
                 else{
                     LogUtils.setInfoTagLog(TAG, "通过Mqtt控制开启" + Configure.tvName + "屏幕失败， 三秒内动作重复");
                 }
-                JSONObject topicJSON = new JSONObject();
-                try{
-                    topicJSON.put("tvId", Configure.tvId);
-                    topicJSON.put("tvState", Configure.tvState);
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-                MqttServer.client.publish(Configure.publishTvTopic, 1, topicJSON.toString().getBytes(StandardCharsets.UTF_8));
             }
 
             @Override
@@ -152,15 +144,6 @@ public class TvOnline {
                 else{
                     LogUtils.setInfoTagLog(TAG, "通过Mqtt控制关闭" + Configure.tvName + "屏幕失败， 三秒内动作重复");
                 }
-                JSONObject topicJSON = new JSONObject();
-                try{
-                    topicJSON.put("tvId", Configure.tvId);
-                    topicJSON.put("tvState", Configure.tvState);
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-                MqttServer.client.publish(Configure.publishTvTopic, 1, topicJSON.toString().getBytes(StandardCharsets.UTF_8));
             }
         };
     }
@@ -180,5 +163,9 @@ public class TvOnline {
             localServer = new LocalServer(context);
             localServer.onStart();
         }
+    }
+
+    public void closeMq(){
+        MqttServer.closeMqtt();
     }
 }

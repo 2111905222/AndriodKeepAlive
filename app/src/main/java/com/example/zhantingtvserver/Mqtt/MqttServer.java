@@ -28,6 +28,14 @@ public class MqttServer {
             client.publish(Configure.publishTvTopic, 1, topicJSON.toString().getBytes(StandardCharsets.UTF_8));
         }
     }
+
+    public static void closeMqtt(){
+        if(client != null){
+            client.close();
+            client = null;
+        }
+    }
+
     /**
      * mqtt控制
      */
@@ -51,7 +59,7 @@ public class MqttServer {
                         Configure.tvMqttSuccess = client.createConnect(Configure.TVSWANADRESS,username,password);
                         if(Configure.tvMqttSuccess){
                             LogUtils.setInfoTagLog(TAG, "TvMqtt连接成功");
-
+                            client.publish(Configure.publishTvTopic, 1, Configure.tvId.getBytes(StandardCharsets.UTF_8));
                         }
                         else {
                             try {

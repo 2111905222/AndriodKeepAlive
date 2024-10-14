@@ -10,8 +10,6 @@ import android.os.IBinder;
 import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
-
-import com.example.zhantingtvserver.Config.ButtonAppReceiver;
 import com.example.zhantingtvserver.Config.Configure;
 import com.example.zhantingtvserver.Mqtt.MqttServer;
 import com.example.zhantingtvserver.Mqtt.TvMqttCallbackBus;
