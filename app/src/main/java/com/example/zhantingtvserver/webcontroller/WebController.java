@@ -61,7 +61,7 @@ public class WebController {
             if (CommandExcutorUtils.executeTaskConfirmInThread(Configure.controlFun)) {
                 //int ret = RootShell.execRootCmd("input keyevent KEYCODE_POWER");
                 int ret = 0;
-                ret = ScreenUtils.screenControl("on");
+                ret = ScreenUtils.screenControl("on", Configure.context);
                 LogUtils.setInfoTagLog(TAG, "通过局域网控制开启" + Configure.tvName + "屏幕:" + ret);
             } else {
                 LogUtils.setInfoTagLog(TAG, "通过局域网控制开启" + Configure.tvName + "屏幕失败,三秒内控制动作重复");
@@ -77,7 +77,7 @@ public class WebController {
 //            }
             if (CommandExcutorUtils.executeTaskConfirmInThread(Configure.controlFun)) {
                 int ret = 0;
-                ret = ScreenUtils.screenControl("off");
+                ret = ScreenUtils.screenControl("off", Configure.context);
                         //RootShell.execRootCmd("input keyevent KEYCODE_POWER");
                 LogUtils.setInfoTagLog(TAG, "通过局域网控制关闭" + Configure.tvName + "屏幕:" + ret);
             } else {

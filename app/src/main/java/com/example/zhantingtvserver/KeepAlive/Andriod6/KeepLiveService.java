@@ -9,6 +9,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 
+import com.example.zhantingtvserver.Application;
+import com.example.zhantingtvserver.Config.Configure;
 import com.example.zhantingtvserver.R;
 import com.example.zhantingtvserver.TvOnline;
 import com.example.zhantingtvserver.Utils.LogUtils;
@@ -46,6 +48,7 @@ public class KeepLiveService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Configure.context = this;
         tvOnline = new TvOnline(this);
         return super.onStartCommand(intent, flags, startId);
     }

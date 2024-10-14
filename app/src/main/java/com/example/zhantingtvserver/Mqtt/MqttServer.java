@@ -15,6 +15,20 @@ public class MqttServer {
     public static TvMqttCallbackBus callback;
     public static String TAG = "MqttServer";
 
+    public static void replyTvState(int ret){
+        if(client != null){
+            JSONObject topicJSON = new JSONObject();
+            try{
+                topicJSON.put("tvId", Configure.tvId);
+                topicJSON.put("tvState", Configure.tvState);
+                topicJSON.put("result", ret);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            client.publish(Configure.publishTvTopic, 1, topicJSON.toString().getBytes(StandardCharsets.UTF_8));
+        }
+    }
     public static void replyTvState(){
         if(client != null){
             JSONObject topicJSON = new JSONObject();
@@ -28,7 +42,6 @@ public class MqttServer {
             client.publish(Configure.publishTvTopic, 1, topicJSON.toString().getBytes(StandardCharsets.UTF_8));
         }
     }
-
     public static void closeMqtt(){
         if(client != null){
             client.close();

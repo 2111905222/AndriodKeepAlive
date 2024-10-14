@@ -1,9 +1,16 @@
 package com.example.zhantingtvserver.KeepAlive.Andriod5;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+
+import com.example.zhantingtvserver.Config.Configure;
+import com.example.zhantingtvserver.Screen.BlackScreenActivity;
+import com.example.zhantingtvserver.Utils.CommandExcutorUtils;
+import com.example.zhantingtvserver.Utils.LogUtils;
+import com.example.zhantingtvserver.Utils.ScreenUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -37,6 +44,7 @@ public class OnePixelManager {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
         onePixelReceiver = new OnePixelReceiver();
         context.registerReceiver(onePixelReceiver,filter);
     }
@@ -62,6 +70,20 @@ public class OnePixelManager {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
         context.startActivity(intent);
     }
+
+    public int startBlackScreenActivity(Context context){
+        if(CommandExcutorUtils.executeTaskConfirmInThread(Configure.opencloseActivity)){
+            Intent intent = new Intent();
+            intent.setClass(context, BlackScreenActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+            context.startActivity(intent);
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
 
     /**
      * 关闭一像素Activity

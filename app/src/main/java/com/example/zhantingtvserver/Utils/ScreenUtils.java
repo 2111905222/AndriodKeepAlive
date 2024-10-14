@@ -15,6 +15,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.example.zhantingtvserver.Config.Configure;
+import com.example.zhantingtvserver.KeepAlive.Andriod5.OnePixelManager;
 import com.example.zhantingtvserver.KeepAlive.Andriod5.OnePixelService;
 
 public class ScreenUtils {
@@ -29,13 +30,7 @@ public class ScreenUtils {
     }
 
     public static int screenControl(String control){
-//        if (Build.VERSION.SDK_INT < 18) {//Android4.3以下版本
-//
-//
-//        } else if (Build.VERSION.SDK_INT < 24) {//Android4.3 - 7.0之间
-//
-//
-//        } else
+
         if(Build.VERSION.SDK_INT <= 29){//Android 10.0以下
             if(control.equals("on")){
                 return screenOn();
@@ -50,7 +45,20 @@ public class ScreenUtils {
                 return screenOnOrOffAndroid10_12();
             }
         }
+//        if(control.equals("off")){
+//            OnePixelManager.getInstance().startOnePixelActivity(context);
+//        }
         return 0;
+    }
+
+    public static int screenControl(String control, Context context){
+        if(control.equals("on")){
+//            return OnePixelManager.getInstance().hideBlackScreenActivit();
+        return 1;
+        }
+        else {
+            return OnePixelManager.getInstance().startBlackScreenActivity(context);
+        }
     }
 
     /**

@@ -12,6 +12,7 @@ public class Configure {
     public static String  externalPath;
     public static String  cachePath;
     public static String  controlFun = "控制电视屏幕";
+    public static String opencloseActivity = "控制Activity";
     @SuppressLint("StaticFieldLeak")
     public static Context context = null;
     /**

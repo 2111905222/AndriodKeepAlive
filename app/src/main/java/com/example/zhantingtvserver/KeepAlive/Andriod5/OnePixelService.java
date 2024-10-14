@@ -41,18 +41,20 @@ public class OnePixelService extends Service {
         super.onCreate();
         LogUtils.setInfoTagLog(TAG, " onCreate");
         tvOnline = new TvOnline(this);
-        mScreenObserver = new ScreenObserver(this);
-        mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
-            @Override
-            public void onScreenOn() {
-                System.out.println("屏幕亮了");
-            }
 
-            @Override
-            public void onScreenOff() {
-                System.out.println("屏幕关了");
-            }
-        });
+        OnePixelManager.getInstance() .registerOnePixelReceiver(this);
+//        mScreenObserver = new ScreenObserver(this);
+//        mScreenObserver.requestScreenStateUpdate(new ScreenObserver.ScreenStateListener() {
+//            @Override
+//            public void onScreenOn() {
+//                System.out.println("屏幕亮了");
+//            }
+//
+//            @Override
+//            public void onScreenOff() {
+//                System.out.println("屏幕关了");
+//            }
+//        });
     }
 
     @SuppressLint("ForegroundServiceType")

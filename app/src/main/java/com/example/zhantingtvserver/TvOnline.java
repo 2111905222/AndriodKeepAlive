@@ -112,12 +112,13 @@ public class TvOnline {
             @Override
             public void tvOpen() {
                 Configure.tvState = ScreenUtils.getScreenStatus(context); // 获取当前屏幕状态
-                if(Configure.tvState){
-                    return;
-                }
+//                if(Configure.tvState){
+//                    return;
+//                }
                 if(CommandExcutorUtils.executeTaskConfirmInThread(Configure.controlFun)){
                     int ret = 0;
-                    ret = ScreenUtils.screenControl("on");
+                    ret = ScreenUtils.screenControl("on", context);
+                    MqttServer.replyTvState(ret);
                     //ret = RootShell.execRootCmd("input keyevent KEYCODE_POWER");
                     //ScreenUtils.screenOn(context);
                     LogUtils.setInfoTagLog(TAG, "通过Mqtt控制开启" + Configure.tvName + "屏幕:" + ret);
@@ -131,14 +132,13 @@ public class TvOnline {
             @Override
             public void tvClose() {
                 Configure.tvState = ScreenUtils.getScreenStatus(context); // 获取当前屏幕状态
-                if(!Configure.tvState){
-                    return;
-                }
+//                if(!Configure.tvState){
+//                    return;
+//                }
                 if(CommandExcutorUtils.executeTaskConfirmInThread(Configure.controlFun)){
                     int ret = 0;
-                    ret = ScreenUtils.screenControl("off");
-//                    ret = RootShell.execRootCmd("input keyevent KEYCODE_POWER");
-                    //ScreenUtils.screenOff(context);
+                    ret = ScreenUtils.screenControl("off", context);
+                    MqttServer.replyTvState(ret);
                     LogUtils.setInfoTagLog(TAG, "通过Mqtt控制关闭" + Configure.tvName + "屏幕:" + ret);
                 }
                 else{

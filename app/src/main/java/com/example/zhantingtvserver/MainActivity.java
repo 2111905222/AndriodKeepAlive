@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity{
                 Manifest.permission.RECEIVE_BOOT_COMPLETED,
                 Manifest.permission.WAKE_LOCK,
                 Manifest.permission.DISABLE_KEYGUARD,
-                Manifest.permission.SYSTEM_ALERT_WINDOW,
+                Manifest.permission.SYSTEM_ALERT_WINDOW
         };
         ActivityCompat.requestPermissions(this, permissions, 1);
     }

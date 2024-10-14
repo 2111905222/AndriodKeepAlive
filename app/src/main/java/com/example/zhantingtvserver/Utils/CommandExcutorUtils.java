@@ -17,6 +17,7 @@ public class CommandExcutorUtils {
 
         public static void initTask(){
             taskStatusMap.put(Configure.controlFun, false);
+            taskStatusMap.put(Configure.opencloseActivity, false);
         }
 
         public static boolean executeTaskConfirm(String taskId) {  // 三秒时间内不可重复点击同一个事件

@@ -7,6 +7,7 @@ import android.content.pm.ConfigurationInfo;
 
 import com.example.zhantingtvserver.Application;
 import com.example.zhantingtvserver.Config.Configure;
+import com.example.zhantingtvserver.Mqtt.MqttServer;
 
 
 public class OnePixelReceiver extends BroadcastReceiver {
@@ -18,11 +19,15 @@ public class OnePixelReceiver extends BroadcastReceiver {
             if (Intent.ACTION_SCREEN_ON.equals(action)) {//如果亮屏，则关闭1像素Activity
                 System.out.println("[OnePixelReceiver]停止startOnePixelActivity");
                 Configure.tvState = true;
-                OnePixelManager.getInstance().finishOnePixelActivity();
+                //OnePixelManager.getInstance().finishOnePixelActivity();
             } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {//如果息屏，则开启1像素Activity
                 System.out.println(TAG + "开始startOnePixelActivity");
                 Configure.tvState = false;
                 OnePixelManager.getInstance().startOnePixelActivity(context);
+            }
+            else if (Intent.ACTION_USER_PRESENT.equals(action)) {//如果息屏，则开启1像素Activity
+                Configure.tvState = false;
+                MqttServer.replyTvState();
             }
         }
     }
